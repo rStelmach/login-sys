@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <header>Witam</header>
     <LogInForm />
   </div>
 </template>
