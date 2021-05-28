@@ -68,13 +68,15 @@ export default {
       }
     }
 
-    function submitForm() {
+    async function submitForm() {
       validateForm();
       if (!formIsValid.value) {
         return;
       }
-
-      store.dispatch('logIn');
+      store.dispatch('logIn', {
+        username: username.value,
+        password: password.value,
+      });
 
       router.push({ name: 'logged', path: '/logged  ' });
     }

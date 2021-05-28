@@ -12,18 +12,30 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+import axios from 'axios';
 
 export default {
   setup() {
-    const username = ref('Szotu');
     const router = useRouter();
     const route = useRoute();
+    const store = useStore();
+    const username = computed(() => store.getters.getUser);
+
+    const response = axios.get('http://localhost:3000', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    console.log(response);
+
     function logOut() {
       router.push({ name: 'login', path: '/login' });
     }
     return {
+      store,
       username,
       router,
       route,
