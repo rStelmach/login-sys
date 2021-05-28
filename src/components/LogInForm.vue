@@ -31,7 +31,7 @@
             @blur="clearValidity('password')"
           />
           <div :class="{ 'invalid-feedback': !isCorrect }" v-if="!isCorrect">
-            Invalid Username or password
+            Invalid Username or Password
           </div>
         </div>
         <button type="submit" class=" btn  mt-5 mb-3 btn-secondary text-uppercase border-0 rounded-20 fw-bold">
@@ -46,7 +46,6 @@
 import { reactive, ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useStore } from 'vuex';
-// import axios from 'axios';
 
 export default {
   setup() {
@@ -83,7 +82,7 @@ export default {
           username: username.value,
           password: password.value,
         });
-        router.replace({ name: 'logged', path: '/logged ' });
+        router.push({ name: 'logged' });
       } catch {
         isCorrect.value = false;
       }
@@ -107,7 +106,6 @@ export default {
 <style lang="scss" scoped>
 .container {
   .box {
-    width: 25vw;
     button {
       transition: 0.1s;
       letter-spacing: 0.15rem;

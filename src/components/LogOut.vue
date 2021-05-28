@@ -31,11 +31,8 @@ export default {
     console.log(response);
 
     function logOut() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('tokenExpiration');
-      clearTimeout(store.getters.getTimer);
-      router.push({ name: 'login', path: '/login' });
+      store.dispatch('logout');
+      router.go('login');
     }
     return {
       store,

@@ -1,12 +1,13 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+// import router
 
-let timer;
+// let timer;
 export default createStore({
   state: {
     token: null,
     user: null,
-    timer: null,
+    // timer: null,
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -16,12 +17,12 @@ export default createStore({
       state.user = user;
     },
     // eslint-disable-next-line no-shadow
-    SET_TIMER(state, timer) {
-      state.timer = timer;
-    },
+    // SET_TIMER(state, timer) {
+    //   state.timer = timer;
+    // },
   },
   actions: {
-    async auth({ commit, context }, { username, password }) {
+    async auth({ commit }, { username, password }) {
       const params = new URLSearchParams();
       params.append('grant_type', password);
       params.append('username', username);
@@ -48,12 +49,12 @@ export default createStore({
       localStorage.setItem('tokenExpiration', response.data.accessTokenExpiresAt);
 
       // const expiresIn = 3600000;
-      const expiresIn = 2000;
+      // const expiresIn = 2000;
 
-      timer = setTimeout(() => {
-        context.dispatch('autoLogout');
-      }, expiresIn);
-      commit('SET_TIMER', timer);
+      // timer = setTimeout(() => {
+      //   context.dispatch('logout');
+      // }, expiresIn);
+      // commit('SET_TIMER', timer);
     },
 
     autoLogIn(context) {
@@ -65,9 +66,6 @@ export default createStore({
       if (expiresIn < 0) {
         return;
       }
-      timer = setTimeout(() => {
-        context.dispatch('autoLogout');
-      }, expiresIn);
       // timer = setTimeout(() => {
       //   context.dispatch('logout');
       // }, expiresIn);
@@ -78,6 +76,15 @@ export default createStore({
           user,
         });
       }
+    },
+
+    logout() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('tokenExpiration');
+
+      // clearTimeout(timer);
+      // router.go('/login');
     },
   },
   modules: {},
@@ -91,8 +98,8 @@ export default createStore({
     isAuthenticated(state) {
       return !!state.token;
     },
-    getTimer(state) {
-      return state.timer;
-    },
+    // getTimer(state) {
+    //   return state.timer;
+    // },
   },
 });
