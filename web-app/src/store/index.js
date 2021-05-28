@@ -40,7 +40,7 @@ export default createStore({
             console.log('Enter correct Username or Password');
           }
         });
-      console.log(response.data.user);
+
       commit('SET_TOKEN', response.data.accessToken);
       commit('SET_USER', response.data.user.username);
 
