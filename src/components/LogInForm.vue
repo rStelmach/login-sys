@@ -4,25 +4,27 @@
       <h1 class="m-4 text-center text-uppercase">sign in</h1>
       <form class="form-container mx-4 mt-4 d-flex flex-column" @submit.prevent="submitForm">
         <div class="form-group mb-4">
-          <label for="emailInput " class="form-label fw-bolder">Email </label>
+          <label for="usernameInput " class="form-label fw-bolder text-capitalize">username </label>
           <input
-            type="email"
-            class="form-control "
-            :class="{ 'is-invalid': !email.isValid }"
-            id="emailInput"
-            v-model.trim="email.value"
-            @blur="clearValidity('email')"
+            type="username"
+            class="form-control"
+            :class="{ 'is-invalid': !username.isValid }"
+            id="usernameInput"
+            placeholder="Your Username"
+            v-model.trim="username.value"
+            @blur="clearValidity('username')"
           />
-          <div :class="{ 'invalid-feedback .bg-danger ': !email.isValid }" v-if="!email.isValid">
-            Please enter correct email!
+          <div :class="{ 'invalid-feedback .bg-danger ': !username.isValid }" v-if="!username.isValid">
+            Please enter a username
           </div>
         </div>
         <div class="form-group mb-4">
-          <label for="passwordInput" class="form-label fw-bolder">Password</label>
+          <label for="passwordInput" class="form-label fw-bolder text-capitalize">password</label>
           <input
             type="password"
             class="form-control "
             id="passwordInput"
+            placeholder="Your Password"
             v-model="password.value"
             @blur="clearValidity('password')"
           />
@@ -38,20 +40,26 @@
 
 <script>
 import { reactive, ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { useStore } from 'vuex';
+// import axios from 'axios';
 
 export default {
   setup() {
-    const email = reactive({ value: '', isValid: true });
+    const username = reactive({ value: '', isValid: true });
     const password = reactive({ value: '', isValid: true });
     const formIsValid = ref(true);
+    const router = useRouter();
+    const route = useRoute();
+    const store = useStore();
 
     function clearValidity(input) {
       this[input].isValid = true;
     }
     function validateForm() {
       formIsValid.value = true;
-      if (email.value === '') {
-        email.isValid = false;
+      if (username.value === '') {
+        username.isValid = false;
         formIsValid.value = false;
       }
       if (password.value === '') {
@@ -59,20 +67,27 @@ export default {
         formIsValid.value = false;
       }
     }
+
     function submitForm() {
       validateForm();
       if (!formIsValid.value) {
         return;
       }
-      console.log('siema');
+
+      store.dispatch('logIn');
+
+      router.push({ name: 'logged', path: '/logged  ' });
     }
     return {
-      email,
+      username,
       password,
       clearValidity,
       formIsValid,
       validateForm,
       submitForm,
+      router,
+      route,
+      store,
     };
   },
 };
@@ -82,14 +97,12 @@ export default {
 .container {
   .box {
     width: 25vw;
-    .form-container {
-      button {
-        transition: 0.1s;
-        letter-spacing: 0.15rem;
-      }
-      button:hover {
-        transform: scale(1.01);
-      }
+    button {
+      transition: 0.1s;
+      letter-spacing: 0.15rem;
+    }
+    button:hover {
+      transform: scale(1.01);
     }
   }
 }

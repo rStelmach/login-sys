@@ -1,15 +1,11 @@
 <template>
   <div class="container">
-    <LogInForm />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import LogInForm from './components/LogInForm.vue';
-
-export default {
-  components: { LogInForm },
-};
+export default {};
 </script>
 
 <style lang="scss" scoped>
