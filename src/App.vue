@@ -5,7 +5,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created() {
+    this.$store.dispatch('autoLogIn');
+  },
+};
 </script>
 
 <style lang="scss" scoped>

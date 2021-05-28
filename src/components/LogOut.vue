@@ -12,7 +12,6 @@
 </template>
 
 <script>
-import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import axios from 'axios';
@@ -22,7 +21,7 @@ export default {
     const router = useRouter();
     const route = useRoute();
     const store = useStore();
-    const username = computed(() => store.getters.getUser);
+    const username = localStorage.getItem('user');
 
     const response = axios.get('http://localhost:3000', {
       headers: {
@@ -32,6 +31,10 @@ export default {
     console.log(response);
 
     function logOut() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('tokenExpiration');
+      clearTimeout(store.getters.getTimer);
       router.push({ name: 'login', path: '/login' });
     }
     return {
