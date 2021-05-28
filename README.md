@@ -11,5 +11,13 @@ Technologie użyte:
 
 
 
+Web Setup:
+cd sys-login 
+npm install 
+npm run serve
+
+Server setup: 
+npm start
+
 
 
