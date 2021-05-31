@@ -1,7 +1,7 @@
-System logowania we Vue z wykorzystaniem serwera node oauth2
-Użyty serwer : https://www.npmjs.com/package/node-oauth2-server-example
+#System logowania we Vue z wykorzystaniem serwera node oauth2
+##Użyty serwer : https://www.npmjs.com/package/node-oauth2-server-example
 
-Technologie użyte:
+##Technologie użyte:
 
 -Vue 3
 
@@ -13,21 +13,14 @@ Technologie użyte:
 
 -axios
 
+##Web Setup:
 
+cd sys-login
 
-
-Web Setup:
-
-cd sys-login 
-
-npm install 
+npm install
 
 npm run serve
 
-
-Server setup: 
+##Server setup:
 
 npm start
-
-
-
