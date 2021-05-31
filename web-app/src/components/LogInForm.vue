@@ -1,6 +1,6 @@
 <template>
   <div class="container d-flex flex-column justify-content-center align-items-center ">
-    <div class="   w-25 d-flex flex-column bg-white rounded shadow p-3 mb-5 bg-white rounded">
+    <div class="box w-25 d-flex flex-column bg-white rounded shadow p-3 mb-5 bg-white rounded">
       <h1 class=" m-4  text-center text-uppercase">sign in</h1>
       <form class=" form-container  mx-5 mt-4 d-flex flex-column" @submit.prevent="submitForm">
         <div class="form-group mb-4">
@@ -112,6 +112,41 @@ export default {
     }
     button:hover {
       transform: scale(1.01);
+    }
+  }
+}
+@media (max-width: 1199.98px) {
+  .container {
+    .box {
+      min-width: 32vw;
+    }
+  }
+}
+@media (max-width: 991.98px) {
+  .container {
+    .box {
+      min-width: 38vw;
+    }
+  }
+}
+@media (max-width: 767.98px) {
+  .container {
+    .box {
+      min-width: 50vw;
+    }
+  }
+}
+@media (max-width: 575.98px) {
+  .container {
+    .box {
+      min-width: 50vw;
+    }
+  }
+  @media (max-width: 375px) {
+    .container {
+      .box {
+        min-width: 69vw;
+      }
     }
   }
 }
