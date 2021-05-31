@@ -4,18 +4,18 @@
 
 ## Technologie użyte:
 
--Vue 3
--Bootstrap
--Vuex
--node
--axios
+# -Vue 3
+# -Bootstrap
+# -Vuex
+# -node
+# -axios
 
 ## Web Setup:
 
-cd sys-login
-npm install
-npm run serve
+# cd sys-login
+# npm install
+# npm run serve
 
 ## Server setup:
 
-npm start
+# npm start
