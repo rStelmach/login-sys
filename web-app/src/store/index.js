@@ -1,13 +1,10 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
-// import router
 
-// let timer;
 export default createStore({
   state: {
     token: null,
     user: null,
-    // timer: null,
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -16,10 +13,6 @@ export default createStore({
     SET_USER(state, user) {
       state.user = user;
     },
-    // eslint-disable-next-line no-shadow
-    // SET_TIMER(state, timer) {
-    //   state.timer = timer;
-    // },
   },
   actions: {
     async auth({ commit }, { username, password }) {
@@ -47,14 +40,6 @@ export default createStore({
       localStorage.setItem('token', response.data.accessToken);
       localStorage.setItem('user', response.data.user.username);
       localStorage.setItem('tokenExpiration', response.data.accessTokenExpiresAt);
-
-      // const expiresIn = 3600000;
-      // const expiresIn = 2000;
-
-      // timer = setTimeout(() => {
-      //   context.dispatch('logout');
-      // }, expiresIn);
-      // commit('SET_TIMER', timer);
     },
 
     autoLogIn(context) {
@@ -66,9 +51,6 @@ export default createStore({
       if (expiresIn < 0) {
         return;
       }
-      // timer = setTimeout(() => {
-      //   context.dispatch('logout');
-      // }, expiresIn);
 
       if (token && user) {
         context.commit('SET_TOKEN', {
@@ -82,9 +64,6 @@ export default createStore({
       localStorage.removeItem('token');
       localStorage.removeItem('user');
       localStorage.removeItem('tokenExpiration');
-
-      // clearTimeout(timer);
-      // router.go('/login');
     },
   },
   modules: {},
@@ -98,8 +77,5 @@ export default createStore({
     isAuthenticated(state) {
       return !!state.token;
     },
-    // getTimer(state) {
-    //   return state.timer;
-    // },
   },
 });
